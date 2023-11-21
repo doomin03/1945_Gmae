@@ -24,8 +24,15 @@ public class EnemyContoller : MonoBehaviour
 
     [SerializeField] private Enemy[] enemys;
     [SerializeField] private GameObject[] points;
-
+    [SerializeField] protected GameObject boss_Point;
     [SerializeField] private Transform tempParent;
+
+    float Boss_Spawn_score = 100.0f;
+
+    //public delegate void BossSpawnDelegate();
+
+    //public BossSpawnDelegate bossSpawnDelegate;
+
 
     private List<Enemy> enemies = new List<Enemy>();
     
@@ -33,6 +40,7 @@ public class EnemyContoller : MonoBehaviour
     void Start()
     { 
         InvokeRepeating("SpawnEnemy", 2f, 3);
+        //bossSpawnDelegate = SpawnBoss;
     }
     
 
@@ -59,6 +67,18 @@ public class EnemyContoller : MonoBehaviour
         enemies.Add(enemy);
     }
 
+    void SpawnBoss() {
+        
+        if (GameController.Instance.score >= Boss_Spawn_score) {
+            Enemy boss = Instantiate(enemys[3], boss_Point.transform);
+            boss.Initialize();
+            boss.SetTempParent(tempParent);
+            enemies.Add(boss);
+            Boss_Spawn_score += 2000.0f;
+        }
+       
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -69,5 +89,10 @@ public class EnemyContoller : MonoBehaviour
         {
             item.Move();
         }
+        SpawnBoss();
+        //if (GameController.Instance.score > 100) {
+        //    bossSpawnDelegate.Invoke();
+        //}
+
     }
 }

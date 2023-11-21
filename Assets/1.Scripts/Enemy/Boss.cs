@@ -38,7 +38,7 @@ public class Boss :Enemy
         
         parttenl.Rotate(new Vector3(0, 0, Time.deltaTime*300f));
     }
-    public  void BulletCreateParttenl()
+    public void BulletCreateParttenl()
     {
         Bullet eb = Instantiate(bullet, parttenl);
         //eb.SetTempParent(tempParent);
@@ -84,7 +84,7 @@ public class Boss :Enemy
 
             DropItem();
             GetComponent<BoxCollider2D>().enabled= false;
-            GetComponent<SpriteAnimation>().SetSprite(exSprites, 0.1f, Delete);
+            GetComponent<SpriteAnimation>().SetSprite(exSprites, 0.1f, Bose_Delete);
             
             ed.obj = null;
         }
@@ -121,7 +121,7 @@ public class Boss :Enemy
         }
     }
 
-    void Delete()
+    void Bose_Delete()
     {
         Destroy(gameObject);        
     }

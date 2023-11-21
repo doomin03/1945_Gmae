@@ -10,6 +10,7 @@ public class FollowerBullet : Bullet
     
     public override void Initialize()
     {
+        bd.isPlayer = true;
         bd.damage = 10;
         bd.speed = 5f;
         

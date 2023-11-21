@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
         }
 
         StartCoroutine("ReLife");
-        if (GameController.Instance.life < 0)
+        if (GameController.Instance.life <= 0)
         {
             GameController.Instance.GamePlayType = GamePlayType.Stop;
         }
